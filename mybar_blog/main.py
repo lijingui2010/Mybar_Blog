@@ -4,7 +4,7 @@
 
 from aiohttp import web
 from mybar_blog.routes import set_routes
-from mybar_blog.settings import get_config, DEFAULT_CONFIG_PATH
+from mybar_blog.settings import get_config, USER_CONFIG_PATH
 
 
 async def init_app(config):
@@ -29,7 +29,7 @@ if __name__ == '__main__':
     import argparse
 
     parse = argparse.ArgumentParser()
-    parse.add_argument('-c', '--config', help="Provide path to config file", default=DEFAULT_CONFIG_PATH)
+    parse.add_argument('-c', '--config', help="Provide path to config file", default=USER_CONFIG_PATH)
     args = parse.parse_args()
 
     if args.config:
