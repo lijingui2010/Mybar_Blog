@@ -6,7 +6,8 @@ import pathlib
 import yaml
 
 BASE_DIR = pathlib.Path(__file__).parent.parent
-DEFAULT_CONFIG_PATH = BASE_DIR / 'config' / 'admin_config.yaml'
+ADMIN_CONFIG_PATH = BASE_DIR / 'config' / 'admin_config.yaml'
+USER_CONFIG_PATH = BASE_DIR / 'config' / 'user_config.yaml'
 
 
 def get_config(path):
