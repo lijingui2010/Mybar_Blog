@@ -5,12 +5,25 @@
 from aiohttp import web
 from mybar_blog.routes import set_routes
 from mybar_blog.settings import get_config, USER_CONFIG_PATH
+from mybar_blog.db import init_engine, close_engine
+
+
+async def on_startup(app):
+    engine = await init_engine(app['config']['database'])
+    app['engine'] = engine
+
+
+async def on_shutdown(app):
+    await close_engine()
 
 
 async def init_app(config):
     app = web.Application()
 
     app['config'] = config
+
+    app.on_startup.append(on_startup)
+    app.on_shutdown.append(on_shutdown)
 
     set_routes(app)
 
